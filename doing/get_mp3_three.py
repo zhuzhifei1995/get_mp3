@@ -23,7 +23,6 @@ def get_mp3_three(mp3_code_url):
     mp3_html_links = pq_html('.body-content-wrapper .section-wrapper').items()
     for mp3_html_link in mp3_html_links:
         mp3_url = 'https://mp.zhizhuma.com'+mp3_html_link.attr('val')
-        print(mp3_url)
         html = requests.get(mp3_url, verify=False, timeout=(2, 5), headers=url_util.header)
         pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
         if pq_html('#audio_media').length > 0:
@@ -32,7 +31,3 @@ def get_mp3_three(mp3_code_url):
                 'url': pq_html('#audio_media').attr('src'),
             })
     return mp3_data
-
-
-if __name__ == '__main__':
-    print(get_mp3_three('https://mp.zhizhuma.com/book.htm?_appbiz=bookdetail&bookid=198969&srcchannel=5.12303.shop&id=198969&sign=462b6c'))
