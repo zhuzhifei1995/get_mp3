@@ -30,7 +30,6 @@ def get_html_mp3(mp3_code_url):
     print(mp3_data)
     
 
-
 if __name__ == '__main__':
     html_url = 'https://mp.zhizhuma.om/sare/audo.htm?rid=27922946&sign=4f2a3f&bid=142491&c'
     get_html_mp3(html_url)
