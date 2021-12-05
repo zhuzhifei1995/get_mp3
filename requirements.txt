@@ -1,0 +1,17 @@
+pytest
+pytest-html
+pytest-xdist
+pytest-ordering
+pytest-rerunfailures
+allure-pytest
+pyyaml
+requests
+PyMySQL
+selenium
+bs4
+beautifulsoup4
+lxml
+tld
+selenium-requests
+pyquery
+other
