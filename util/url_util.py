@@ -6,9 +6,9 @@ from selenium import webdriver
 key_urls = {
     'mp.zhizhuma.com/share/audio.htm': '1',
     'mp.zhizhuma.com/qr.html': '1',
+    'mp.zhizhuma.com/q': '1',
     'www.hdsdjf.com/smp': '2',
     'mp.zhizhuma.com/book.htm': '3',
-    'mp.zhizhuma.com/q': '3',
 }
 
 header = {
