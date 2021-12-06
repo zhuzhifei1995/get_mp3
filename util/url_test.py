@@ -42,6 +42,7 @@ if __name__ == '__main__':
      html_url = 'https://mp.zhizhuma.com/q?c=120GM6JC98D&wxParamQr=1&sh=sh&vt_=1636632141914'
     '''
 
-    html_url = 'https://mp.zhizhuma.com/book.htm?id=202053&sign=f6efa5#27908816'
+    # html_url = 'https://mp.zhizhuma.com/book.htm?id=105320&sign=382065'
+    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120CUK0J76D'
     get_html_mp3(html_url)
 

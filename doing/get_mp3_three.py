@@ -22,7 +22,7 @@ def get_mp3_three(mp3_code_url):
     pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
     mp3_html_links = pq_html('.body-content-wrapper .section-wrapper').items()
     for mp3_html_link in mp3_html_links:
-        mp3_url = 'https://mp.zhizhuma.com'+mp3_html_link.attr('val')
+        mp3_url = 'https://mp.zhizhuma.com' + mp3_html_link.attr('val')
         html = requests.get(mp3_url, verify=False, timeout=(2, 5), headers=url_util.header)
         pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
         if pq_html('#audio_media').length > 0:
@@ -35,11 +35,16 @@ def get_mp3_three(mp3_code_url):
             pq_chrome_get_html = PyQuery(''.join([chrome_get_html.replace('</body>', '')
                                                  .replace('</html>', ''), '</body></html>', ]))
             html_mp3s = pq_chrome_get_html('.other-item')
+            # print(html_mp3s)
             book_id = pq_chrome_get_html('#launch_book_id').text()
             book_code_id = pq_chrome_get_html('#launch_cr_id').text()
             for html_mp3 in html_mp3s.items():
-                mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + html_mp3.attr('rs-id') \
-                              + '&sign=' + html_mp3.attr('sign') + '&bid=' + book_id + '&cid=' + book_code_id
+                try:
+                    mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + html_mp3.attr('rs-id') \
+                                  + '&sign=' + html_mp3.attr('sign') + '&bid=' + book_id + '&cid=' + book_code_id
+                except TypeError:
+                    mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + html_mp3.attr(
+                        'rs-id') + '&sign=' + html_mp3.attr('rs-sign') + '&bid=' + book_id + '&cid=' + book_code_id
                 html_new_mp3 = requests.get(mp3_new_url, verify=False, timeout=(2, 5), headers=url_util.header)
                 pq_new_html = PyQuery(''.join([html_new_mp3.text.replace('</body>', '')
                                               .replace('</html>', ''), '</body></html>', ]))
