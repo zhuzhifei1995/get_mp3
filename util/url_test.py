@@ -4,7 +4,7 @@
 from doing.get_mp3_one import get_mp3_one
 from doing.get_mp3_three import get_mp3_three
 from doing.get_mp3_two import get_mp3_two
-from util import url_util
+from util import url_util, txt_util
 
 
 def get_html_mp3(mp3_code_url):
@@ -31,23 +31,7 @@ def get_html_mp3(mp3_code_url):
 
 
 if __name__ == '__main__':
-    '''
-     html_url = 'https://mp.zhizhuma.com/book.htm?_appbiz=bookdetail&bookid=198969&srcchannel=5.12303.shop&id=198969&sign=462b6c' 
-     html_url = 'https://mp.zhizhuma.com/book.htm?id=51239&sign=1b63e6'
-     
-     html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120GDQOQB80'
-     html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000001000007IZCD1B79'
-     html_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=35304649&sign=404363&bid=198969&cid=27514970'
-     
-     html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120CUK0J76D'
-     html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120EB90I887'
-     html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000001000007IZCD1B79'
-     html_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=35304649&sign=404363&bid=198969&cid=27514970'
-    
-     html_url = 'https://mp.zhizhuma.com/q?c=120GM6JC98D&wxParamQr=1&sh=sh&vt_=1636632141914'
-    '''
-
-    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000000000007D5BG1832&sh=sh&vt_=1638424021201&share_=167235561'
-
-    get_html_mp3(html_url)
-
+    urls = txt_util.read_txt_line("../test/zhizhuma.txt")
+    print(urls)
+    for url in urls:
+        print(get_html_mp3(url))
