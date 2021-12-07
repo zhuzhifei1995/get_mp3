@@ -30,7 +30,6 @@ def get_mp3_one(mp3_code_url: str):
         new_html = url_util.open_chrome_get_html(mp3_code_url)
         pq_new_html = PyQuery(''.join([new_html.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
         html_mp3s = pq_new_html('.other-item')
-        print(html_mp3s)
         book_id = pq_new_html('#launch_book_id').text()
         book_code_id = pq_new_html('#launch_cr_id').text()
         for html_mp3 in html_mp3s.items():
@@ -38,8 +37,7 @@ def get_mp3_one(mp3_code_url: str):
                 mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid='+html_mp3.attr('rs-id') \
                               + '&sign=' + html_mp3.attr('sign') + '&bid=' + book_id + '&cid=' + book_code_id
             except TypeError:
-                mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + html_mp3.attr('rs-id') \
-                              + '&sign=' + html_mp3.attr('rs-sign') + '&bid=' + book_id + '&cid=' + book_code_id
+                mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm'
             html_new_mp3 = requests.get(mp3_new_url, verify=False, timeout=(2, 5), headers=url_util.header)
             pq_new_html = PyQuery(''.join([html_new_mp3.text.replace('</body>', '')
                                           .replace('</html>', ''), '</body></html>', ]))

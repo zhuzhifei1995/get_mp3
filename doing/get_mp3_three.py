@@ -43,8 +43,7 @@ def get_mp3_three(mp3_code_url):
                     mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + html_mp3.attr('rs-id') \
                                   + '&sign=' + html_mp3.attr('sign') + '&bid=' + book_id + '&cid=' + book_code_id
                 except TypeError:
-                    mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + html_mp3.attr(
-                        'rs-id') + '&sign=' + html_mp3.attr('rs-sign') + '&bid=' + book_id + '&cid=' + book_code_id
+                    mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm'
                 html_new_mp3 = requests.get(mp3_new_url, verify=False, timeout=(2, 5), headers=url_util.header)
                 pq_new_html = PyQuery(''.join([html_new_mp3.text.replace('</body>', '')
                                               .replace('</html>', ''), '</body></html>', ]))

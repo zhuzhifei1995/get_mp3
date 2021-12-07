@@ -42,7 +42,10 @@ if __name__ == '__main__':
      html_url = 'https://mp.zhizhuma.com/q?c=120GM6JC98D&wxParamQr=1&sh=sh&vt_=1636632141914'
     '''
 
-    # html_url = 'https://mp.zhizhuma.com/book.htm?id=105320&sign=382065'
-    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120CUK0J76D'
+    html_url = 'https://mp.zhizhuma.com/book.htm?id=105320&sign=382065'
+    # html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120CUK0J76D'
+    # html_url = 'https://mp.zhizhuma.com/qr.html?crcode=120EB90I887'
+    # html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000001000007IZCD1B79'
+    # html_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=35304649&sign=404363&bid=198969&cid=27514970'
     get_html_mp3(html_url)
 
