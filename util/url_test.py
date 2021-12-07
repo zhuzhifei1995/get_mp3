@@ -47,7 +47,7 @@ if __name__ == '__main__':
      html_url = 'https://mp.zhizhuma.com/q?c=120GM6JC98D&wxParamQr=1&sh=sh&vt_=1636632141914'
     '''
 
-    html_url = 'https://mp.zhizhuma.com/book.htm?id=105320&sign=382065'
+    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000000000007D5BG1832&sh=sh&vt_=1638424021201&share_=167235561'
 
     get_html_mp3(html_url)
 
