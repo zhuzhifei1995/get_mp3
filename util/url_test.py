@@ -34,4 +34,4 @@ if __name__ == '__main__':
     urls = txt_util.read_txt_line("../test/zhizhuma.txt")
     print(urls)
     for url in urls:
-        print(get_html_mp3(url))
+        get_html_mp3(url)
