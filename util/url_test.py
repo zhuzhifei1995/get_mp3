@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
-
-
+from doing.get_mp3_four import get_mp3_four
 from doing.get_mp3_one import get_mp3_one
 from doing.get_mp3_three import get_mp3_three
 from doing.get_mp3_two import get_mp3_two
@@ -22,6 +21,8 @@ def get_html_mp3(mp3_code_url):
             mp3_data = get_mp3_two(mp3_code_url)
         elif url_type == '3':
             mp3_data = get_mp3_three(mp3_code_url)
+        elif url_type == '4':
+            mp3_data = get_mp3_four(mp3_code_url)
         else:
             mp3_data['contentCode'] = url_type
     else:
@@ -31,9 +32,9 @@ def get_html_mp3(mp3_code_url):
 
 
 if __name__ == '__main__':
-    # urls = txt_util.read_txt_line("../test/zhizhuma.txt")
-    # for url in urls:
-    #     get_html_mp3(url)
-    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F000000010000045JCH119C&sh=sh&vt_=1637312700411'
-    get_html_mp3(html_url)
+    urls = txt_util.read_txt_line("../test/pingdianedu.txt")
+    for url in urls:
+        get_html_mp3(url)
+    # html_url = 'http://www.pingdianedu.com:8101/files/html/hearing/hearing6-1.html'
+    # get_html_mp3(html_url)
 

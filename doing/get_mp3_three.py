@@ -12,7 +12,7 @@ from urllib3.exceptions import InsecureRequestWarning
 # 请求地址类型
 # https://mp.zhizhuma.com/book.htm?id=51239&sign=1b63e6
 # https://mp.zhizhuma.com/book.htm?_appbiz=bookdetail&bookid=198969&srcchannel=5.12303.shop&id=198969&sign=462b6c
-def get_mp3_three(mp3_code_url):
+def get_mp3_three(mp3_code_url: str):
     mp3_data = {
         'contentCode': 0,
         'mp3_list': []

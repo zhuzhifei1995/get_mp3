@@ -9,6 +9,7 @@ key_urls = {
     'mp.zhizhuma.com/q': '1',
     'www.hdsdjf.com/smp': '2',
     'mp.zhizhuma.com/book.htm': '3',
+    'www.pingdianedu.com:8101/files/html': '4',
 }
 
 header = {

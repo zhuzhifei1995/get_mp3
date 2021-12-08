@@ -9,7 +9,7 @@ from urllib3.exceptions import InsecureRequestWarning
 
 
 # 请求地址类型 http://www.hdsdjf.com/smp/yytlj08.aspx
-def get_mp3_two(mp3_code_url):
+def get_mp3_two(mp3_code_url: str):
     mp3_data = {
         'contentCode': 0,
         'mp3_list': []
