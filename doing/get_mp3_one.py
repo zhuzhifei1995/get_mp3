@@ -48,15 +48,21 @@ def get_mp3_one(mp3_code_url: str):
                         'url': pq_new_html('#audio_media').attr('src'),
                     })
         else:
-            for qr_html in pq_new_html('.section-wrapper').items():
-                mp3_url = 'https://mp.zhizhuma.com' + qr_html.attr('val')
-                mp3_url_html = requests.get(mp3_url, verify=False, timeout=(2, 5), headers=url_util.header)
-                pq_mp3_url_html = PyQuery(
-                    ''.join([mp3_url_html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
-                if pq_mp3_url_html('#audio_media').length > 0:
-                    mp3_data['mp3_list'].append({
-                        'name': pq_mp3_url_html('title').text(),
-                        'url': pq_mp3_url_html('#audio_media').attr('src'),
-                    })
+            if pq_new_html('.section-wrapper').length > 0:
+                for qr_html in pq_new_html('.section-wrapper').items():
+                    mp3_url = 'https://mp.zhizhuma.com' + qr_html.attr('val')
+                    mp3_url_html = requests.get(mp3_url, verify=False, timeout=(2, 5), headers=url_util.header)
+                    pq_mp3_url_html = PyQuery(
+                        ''.join([mp3_url_html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
+                    if pq_mp3_url_html('#audio_media').length > 0:
+                        mp3_data['mp3_list'].append({
+                            'name': pq_mp3_url_html('title').text(),
+                            'url': pq_mp3_url_html('#audio_media').attr('src'),
+                        })
+            else:
+                mp3_data['mp3_list'].append({
+                    'name': pq_new_html('title').text(),
+                    'url': pq_new_html('audio').attr('src'),
+                })
 
     return mp3_data
