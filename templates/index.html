@@ -35,12 +35,23 @@
 </style>
 <body>
 <div>
-    <form method="get" action="get_mp3">
+    <form method="post" action="index.html">
         <label>
-            <input id="mp3_code_url" type="text" name="mp3_code_url" />
+            {% if mp3_code_url %}
+            <input id="mp3_code_url" type="text" name="mp3_code_url" value="{{ mp3_code_url }}"/>
+            {% else %}
+            <input id="mp3_code_url" type="text" name="mp3_code_url"/>
+            {% endif %}
             <input type="submit" value="获取声音"/>
         </label>
     </form>
+    <div>
+        {% if mp3_data['mp3_list'] %}
+            {% for mp3 in mp3_data['mp3_list'] %}
+                <embed src="{{mp3['url']}}" /><br>
+            {% endfor %}
+        {% endif %}
+    </div>
 </div>
 </body>
 </html>
