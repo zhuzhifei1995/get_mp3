@@ -16,7 +16,6 @@ def get_mp3_four(mp3_code_url: str):
     html = requests.get(mp3_code_url, verify=False, timeout=(2, 5), headers=url_util.header)
     pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
     if pq_html('source').length > 0:
-
         mp3_data['mp3_list'].append({
             'name': pq_html('source').attr('src').split('/')[-1],
             'url': pq_html('source').attr('src'),

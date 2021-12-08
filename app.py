@@ -2,6 +2,7 @@
 
 from flask import Flask, request, jsonify, render_template
 
+from doing.get_mp3_four import get_mp3_four
 from doing.get_mp3_one import get_mp3_one
 from doing.get_mp3_three import get_mp3_three
 from doing.get_mp3_two import get_mp3_two
@@ -27,6 +28,8 @@ def get_mp3():
             mp3_data = get_mp3_two(mp3_code_url)
         elif url_type == '3':
             mp3_data = get_mp3_three(mp3_code_url)
+        elif url_type == '4':
+            mp3_data = get_mp3_four(mp3_code_url)
         else:
             mp3_data['contentCode'] = url_type
     else:
