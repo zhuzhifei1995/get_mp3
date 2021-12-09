@@ -35,6 +35,6 @@ if __name__ == '__main__':
     # urls = txt_util.read_txt_line("../test/pingdianedu.txt")
     # for url in urls:
     #     get_html_mp3(url)
-    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000000000003QCGI1A43&sh=sh&vt_=1637305207068'
+    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F000000000000045JBF191F&sh=sh&vt_=1637312602135'
     get_html_mp3(html_url)
 
