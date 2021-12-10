@@ -32,9 +32,9 @@ def get_html_mp3(mp3_code_url):
 
 
 if __name__ == '__main__':
-    # urls = txt_util.read_txt_line("../test/pingdianedu.txt")
+    # urls = txt_util.read_txt_line("../test/zhizhuma.txt")
     # for url in urls:
     #     get_html_mp3(url)
-    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F000000000000045JBF191F&sh=sh&vt_=1637312602135'
+    html_url = 'https://mp.zhizhuma.com/qr.html?crcode=110000000F00000001000007IZCD1B79'
     get_html_mp3(html_url)
 

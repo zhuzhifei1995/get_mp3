@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>获取界面的MP3文件</title>
@@ -45,10 +45,13 @@
             <input type="submit" value="获取声音"/>
         </label>
     </form>
-    <div>
+    <br>
         {% if mp3_data['mp3_list'] %}
             {% for mp3 in mp3_data['mp3_list'] %}
-                <embed src="{{mp3['url']}}" /><br>
+                <p>{{mp3['name']}}</p>
+                <audio controls>
+                  <source src="{{mp3['url']}}" type="audio/mpeg">
+                </audio><br>
             {% endfor %}
         {% endif %}
     </div>

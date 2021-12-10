@@ -16,13 +16,17 @@ from urllib3.exceptions import InsecureRequestWarning
 def get_mp3_one(mp3_code_url: str):
     mp3_data = {
         'contentCode': 0,
+        'book_name': '',
         'mp3_list': []
     }
     urllib3.disable_warnings(InsecureRequestWarning)
     html = requests.get(mp3_code_url, verify=False, timeout=(2, 5), headers=url_util.header)
     pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
     if pq_html('#audio_media').length > 0:
+        print(1)
         mp3_data['mp3_list'].append({
+            'type': 2,
+            "depth": 1,
             'name': pq_html('title').text(),
             'url': pq_html('#audio_media').attr('src'),
         })
@@ -43,6 +47,7 @@ def get_mp3_one(mp3_code_url: str):
                 pq_new_html = PyQuery(''.join([html_new_mp3.text.replace('</body>', '')
                                               .replace('</html>', ''), '</body></html>', ]))
                 if pq_new_html('#audio_media').length > 0:
+                    print(2)
                     mp3_data['mp3_list'].append({
                         'name': pq_new_html('title').text(),
                         'url': pq_new_html('#audio_media').attr('src'),
@@ -55,11 +60,37 @@ def get_mp3_one(mp3_code_url: str):
                     pq_mp3_url_html = PyQuery(
                         ''.join([mp3_url_html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
                     if pq_mp3_url_html('#audio_media').length > 0:
+                        print(3)
                         mp3_data['mp3_list'].append({
                             'name': pq_mp3_url_html('title').text(),
                             'url': pq_mp3_url_html('#audio_media').attr('src'),
                         })
+                    else:
+                        mp3_url_html = url_util.open_chrome_get_html(mp3_url)
+                        pq_mp3_url_html = PyQuery(
+                            ''.join(
+                                [mp3_url_html.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
+                        book_id = pq_mp3_url_html('#launch_book_id').text()
+                        book_code_id = pq_mp3_url_html('#launch_cr_id').text()
+                        for mp3_url in pq_mp3_url_html('.other-item').items():
+                            try:
+                                mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm?rid=' + mp3_url.attr('rs-id') \
+                                              + '&sign=' + mp3_url.attr(
+                                    'sign') + '&bid=' + book_id + '&cid=' + book_code_id
+                            except TypeError:
+                                mp3_new_url = 'https://mp.zhizhuma.com/share/audio.htm'
+                            html_new_mp3 = requests.get(mp3_new_url, verify=False, timeout=(2, 5),
+                                                        headers=url_util.header)
+                            pq_new_html = PyQuery(''.join([html_new_mp3.text.replace('</body>', '')
+                                                          .replace('</html>', ''), '</body></html>', ]))
+                            if pq_new_html('#audio_media').length > 0:
+                                print(4)
+                                mp3_data['mp3_list'].append({
+                                    'name': pq_new_html('title').text(),
+                                    'url': pq_new_html('#audio_media').attr('src'),
+                                })
             else:
+                print(5)
                 mp3_data['mp3_list'].append({
                     'name': pq_new_html('title').text(),
                     'url': pq_new_html('audio').attr('src'),

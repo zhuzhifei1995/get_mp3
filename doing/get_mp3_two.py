@@ -12,18 +12,19 @@ from urllib3.exceptions import InsecureRequestWarning
 def get_mp3_two(mp3_code_url: str):
     mp3_data = {
         'contentCode': 0,
-        'mp3_list': []
+        'book_name': '',
+        'mp3_list': [],
     }
     urllib3.disable_warnings(InsecureRequestWarning)
     html = requests.get(mp3_code_url, verify=False, timeout=(2, 5), headers=url_util.header)
     pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
-
     if pq_html('a').length > 0:
         link_url = pq_html('a').attr('href')
         link_html = requests.get(link_url, verify=False, timeout=(2, 5), headers=url_util.header)
         pq_link_html = PyQuery(''.join([link_html.text.replace
                                         ('</body>', '').replace('</html>', ''), '</body></html>', ]))
         mp3_links = pq_link_html('.tab ul li')
+        mp3_data['book_name'] = pq_link_html('#book-main').attr('data-name')
         if mp3_links.length > 0:
             mp3_id = mp3_links.attr('data-l-id')
             link_url = link_url.replace('dt/bi', 'cm/pl')
@@ -33,14 +34,20 @@ def get_mp3_two(mp3_code_url: str):
                                            ('</body>', '').replace('</html>', ''), '</body></html>', ]))
             for mp3_url in pq_mp3_html('.playlist_song').items():
                 mp3_data['mp3_list'].append({
+                    'type': 2,
+                    "depth": 1,
                     'name': mp3_url.attr('data-t'),
                     'url': mp3_url.attr('data-u'),
+                    'tmp_id': mp3_url.attr('data-n'),
                 })
         else:
             for mp3_url in pq_link_html('.playlist_song').items():
                 mp3_data['mp3_list'].append({
+                    'type': 2,
+                    "depth": 1,
                     'name': mp3_url.attr('data-t'),
                     'url': mp3_url.attr('data-u'),
+                    'tmp_id': mp3_url.attr('data-n'),
                 })
             return mp3_data
     else:

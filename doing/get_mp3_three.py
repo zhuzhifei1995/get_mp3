@@ -26,6 +26,7 @@ def get_mp3_three(mp3_code_url: str):
         html = requests.get(mp3_url, verify=False, timeout=(2, 5), headers=url_util.header)
         pq_html = PyQuery(''.join([html.text.replace('</body>', '').replace('</html>', ''), '</body></html>', ]))
         if pq_html('#audio_media').length > 0:
+            print(6)
             mp3_data['mp3_list'].append({
                 'name': pq_html('.audio-title').text(),
                 'url': pq_html('#audio_media').attr('src'),
@@ -35,7 +36,6 @@ def get_mp3_three(mp3_code_url: str):
             pq_chrome_get_html = PyQuery(''.join([chrome_get_html.replace('</body>', '')
                                                  .replace('</html>', ''), '</body></html>', ]))
             html_mp3s = pq_chrome_get_html('.other-item')
-            # print(html_mp3s)
             book_id = pq_chrome_get_html('#launch_book_id').text()
             book_code_id = pq_chrome_get_html('#launch_cr_id').text()
             for html_mp3 in html_mp3s.items():
@@ -48,6 +48,7 @@ def get_mp3_three(mp3_code_url: str):
                 pq_new_html = PyQuery(''.join([html_new_mp3.text.replace('</body>', '')
                                               .replace('</html>', ''), '</body></html>', ]))
                 if pq_new_html('#audio_media').length > 0:
+                    print(7)
                     mp3_data['mp3_list'].append({
                         'name': pq_new_html('title').text(),
                         'url': pq_new_html('#audio_media').attr('src'),
